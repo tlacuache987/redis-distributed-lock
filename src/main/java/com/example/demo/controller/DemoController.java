@@ -55,13 +55,13 @@ public class DemoController {
 	}
 
 	@RequestMapping(path = "/lock", method = RequestMethod.GET)
-	public String lock(HttpSession session, @ModelAttribute("userId") String userId) {
+	public String lock(HttpSession session/*, @ModelAttribute("userId") String userId*/) {
 		RLock myLock = client.getLock("myLock");
 
 		try {
 			System.out.println("aquiring LOCK");
 			myLock.lock(15, TimeUnit.SECONDS);
-			System.out.println("aquired LOCK successfully by: " + session.getId() + ", userId: " + userId);
+			System.out.println("aquired LOCK successfully by: " + session.getId() /*+ ", userId: " + userId*/);
 
 			Thread.sleep(10000);
 			System.out.println("LOCK example executed successfully");
